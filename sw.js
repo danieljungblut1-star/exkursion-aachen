@@ -1,5 +1,5 @@
 // Hält die App-Dateien für schwaches Netz vor. Daten und Kartenkacheln kommen immer frisch aus dem Netz.
-const CACHE = "exkursion-v1";
+const CACHE = "exkursion-v2";
 const SHELL = ["./", "index.html", "style.css", "app.js", "config.js", "manifest.webmanifest", "icons/icon-192.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => {
