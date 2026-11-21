@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exkursionskarte Aachen</title>
+<meta name="description" content="Gemeinsame Exkursionskarte: Gruppen tragen in Aachen Orte mit Fotos ein und bauen eine farbige Legende.">
+<meta name="theme-color" content="#155e75">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Exkursion">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="bar">
+    <div class="brand">
+      <h1>Exkursionskarte Aachen</h1>
+      <small id="whoami">Orte sammeln · fotografieren · Legende bauen</small>
+    </div>
+    <button class="btn small" id="teacherBtn" hidden>Lehrkraft</button>
+    <button class="btn small" id="logoutBtn" hidden>Abmelden</button>
+  </header>
+  <div class="task" id="taskBar" hidden><b>Aufgabe</b><p id="taskText"></p></div>
+  <div class="main">
+    <div class="mapwrap">
+      <div id="map" class="map" aria-label="Karte von Aachen"></div>
+      <div class="hint" id="hint" hidden>
+        <span id="hintText">Tippe auf die Karte, wo der Ort liegt</span>
+        <button class="btn small" id="hereBtn" hidden>📍 An meinem Standort</button>
+      </div>
+      <button class="btn primary add-fab" id="addBtn" hidden>+ Ort eintragen</button>
+      <div class="map-tools">
+        <button class="btn icon-btn" id="locBtn" aria-label="Meinen Standort zeigen" title="Mein Standort">◎</button>
+        <button class="btn icon-btn" id="fitBtn" aria-label="Alle Orte zeigen" title="Alle Orte">⤢</button>
+        <button class="btn icon-btn" id="lblBtn" aria-label="Namen ein/aus" title="Namen">Aa</button>
+      </div>
+    </div>
+    <aside class="panel" id="panel">
+      <div class="tabs" role="tablist">
+        <button role="tab" id="tabLegend" aria-selected="true">Legende<span class="count" id="cntCats">0</span></button>
+        <button role="tab" id="tabPlaces" aria-selected="false">Orte<span class="count" id="cntPlaces">0</span></button>
+      </div>
+      <div class="panel-body" id="panelBody"></div>
+    </aside>
+    <section class="sheet" id="sheet" hidden></section>
+  </div>
+</div>
+
+<div class="login" id="login" hidden>
+  <form class="card" id="loginForm">
+    <h2>Exkursionskarte Aachen</h2>
+    <p>Gib den Klassencode ein, den du von deiner Lehrkraft bekommen hast.</p>
+    <label class="field"><span>Klassencode</span><input type="text" id="codeIn" autocomplete="off" autocapitalize="off" spellcheck="false" required></label>
+    <label class="field"><span>Name eurer Gruppe</span><input type="text" id="groupIn" maxlength="40" placeholder="z. B. Gruppe 3" autocomplete="off"></label>
+    <p class="err" id="loginErr" hidden></p>
+    <button class="btn primary" type="submit" id="loginBtn">Los geht’s</button>
+  </form>
+</div>
+
+<div class="lightbox" id="lightbox" hidden><img id="lbImg" alt=""><button class="close" id="lbClose" aria-label="Schließen">✕</button></div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
